@@ -1,0 +1,15 @@
+*.o
+*.out
+*.exe
+
+frontend
+
+*~
+*.log
+
+build/
+bin/
+
+*.pgm
+
+.vscode/.DS_Store
