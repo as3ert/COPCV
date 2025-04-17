@@ -201,6 +201,7 @@ if (g_m_occlusion==1)
      printf("\n      Average Angular Error      %4.10lf",(double)g_aae);
 
  print_console_line();
+ printf("\n");
  fflush(stdout);
  return;
 }
@@ -523,7 +524,7 @@ read_pgm_header(g_image1,&g_position,&g_nx,&g_ny);
 
 /* ---------- memory allocation ------------------------------------ */
 
-ALLOC_MATRIX(2, g_nx+2*g_bx, g_ny+2*g_by, &g_f1,   &g_f2);
+ALLOC_MATRIX(2, g_nx+2*g_bx, g_ny+3*g_by, &g_f1,   &g_f2);
 ALLOC_MATRIX(2, g_nx+2*g_bx, g_ny+2*g_by, &g_f1_s, &g_f2_s);
 ALLOC_MATRIX(2, g_nx+2*g_bx, g_ny+2*g_by, &g_u,    &g_v);
 
@@ -592,11 +593,3 @@ printf("\n\n\n");
 
 return(0);
 }
-
-
-
-
-
-
-
-
