@@ -15,7 +15,7 @@ INCL_PATH =
 LIBS_PATH =
 LIBS = #-lm
 
-OGL_LIBS = -lGL -lGLU -lglut #-lXxf86vm
+OGL_LIBS = -lGL -lGLU -lglut
 OGL_LIBS_PATH = -L/usr/X11R6/lib
 
 

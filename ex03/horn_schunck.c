@@ -86,8 +86,13 @@ for(i=bx;i<nx+bx;i++)
                 here - do not forget the correct boundary conditions  ----
         */
 
-        /* compute the sum of weights */
+        xp = hx_2 * (u_old[i-1][j] + u_old[i+1][j]);
+        xm = hx_2 * (v_old[i-1][j] + v_old[i+1][j]);
+        yp = hy_2 * (u_old[i][j-1] + u_old[i][j+1]);
+        ym = hy_2 * (v_old[i][j-1] + v_old[i][j+1]);
 
+        /* compute the sum of weights */
+        sum = 2.0 * (hx_2 + hy_2);
         /* ------------------------------------------------------------ */
 
         /* perform iteration */
@@ -95,7 +100,8 @@ for(i=bx;i<nx+bx;i++)
         /* TODO
          ----- fill in your code for the HS Jacobi iteration here ----
         */
-
+        u[i][j] = (-J_13[i][j] - (J_12[i][j] * v_old[i][j] - (xp + yp))) / (J_11[i][j] + sum);
+        v[i][j] = (-J_23[i][j] - (J_12[i][j] * u_old[i][j] - (xm + ym))) / (J_22[i][j] + sum);
         /* ------------------------------------------------------------ */
     }
 
@@ -157,7 +163,14 @@ for(i=bx;i<nx+bx;i++)
         /* TODO
          ----- fill in your code for computing the derivatives here ----
         */
+        float f1_avg_x = (f1[i+1][j] - f1[i-1][j]) / 2.0;
+        float f1_avg_y = (f1[i][j+1] - f1[i][j-1]) / 2.0;
+        float f2_avg_x = (f2[i+1][j] - f2[i-1][j]) / 2.0;
+        float f2_avg_y = (f2[i][j+1] - f2[i][j-1]) / 2.0;
 
+        fx = hx_1 * (f1_avg_x + f2_avg_x);
+        fy = hy_1 * (f1_avg_y + f2_avg_y);
+        ft = (f2[i][j] - f1[i][j]) / 2.0;
         /* ------------------------------------------------------------ */
 
         /* set up motion tensor */
@@ -165,7 +178,12 @@ for(i=bx;i<nx+bx;i++)
         /* TODO
          ----- fill in your code for the motion tensor entries here  ----
         */
-
+        J_11[i][j] = fx * fx;
+        J_12[i][j] = fx * fy;
+        J_13[i][j] = fx * ft;
+        J_22[i][j] = fy * fy;
+        J_23[i][j] = fy * ft;
+        J_33[i][j] = ft * ft;
         /* ------------------------------------------------------------ */
 
     }

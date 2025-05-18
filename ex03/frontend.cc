@@ -14,7 +14,7 @@
 #include <float.h>
 #include <time.h>
 #include <sys/time.h>
-#include <GL/glut.h>
+#include <GLUT/glut.h>
 
 /*---------------------------------------------------------------------------*/
 /* include own libraries */
