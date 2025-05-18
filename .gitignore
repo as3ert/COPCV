@@ -11,7 +11,5 @@ frontend
 build/
 bin/
 
-*.pgm
-
 *.DS_Store
 *.pdf
